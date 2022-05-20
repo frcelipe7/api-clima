@@ -1,46 +1,64 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".dark-mode .button svg");
+function alternateMode(button_one, button_two) {
+    button_one.removeAttribute('opacity-one');
 
-    const dark_mode_button = document.querySelector(".dark-mode .dark svg");
-    const light_mode_button = document.querySelector(".dark-mode .light svg");
+    button_one.setAttribute('opacity-zero', '');
+    button_one.addEventListener("animationend", () => {
+        button_one.style.display = 'none';
+
+        button_two.style.display = 'block';
+        button_two.setAttribute('opacity-one', '');
+    }, {once: true});
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // butoes
+    const dark_mode_button = document.querySelector(".dark-mode .dark");
+    const light_mode_button = document.querySelector(".dark-mode .light");
+
+    // outros elementos da tela
+    const body = document.querySelector('body');
+    const h1Top = document.querySelector(".clima");
+    const lines = document.querySelectorAll('.line');
 
     dark_mode_button.addEventListener('click', () => {
-        dark_mode_button.setAttribute('opacity-zero', '')
+        alternateMode(dark_mode_button, light_mode_button);
+        body.removeAttribute('on-light-mode');
+        body.setAttribute('on-dark-mode', '');
 
-        dark_mode_button.addEventListener('animationend', () => {
-            dark_mode_button.style.display = 'none';
-            dark_mode_button.style.opacity = '0';
-            dark_mode_button.removeAttribute('opacity-zero')
+        h1Top.style.color = '#f2f2f2';
 
-            light_mode_button.style.display = 'block'
-            light_mode_button.setAttribute('opacity-one', '')
-            light_mode_button.style.animationIterationCount = '1';
-            light_mode_button.addEventListener('animationend', () => {
-                light_mode_button.style.opacity = '1';
-                light_mode_button.removeAttribute('opacity-one')
-            })
-        })
-    })
+        lines.forEach(line => {
+            line.style.backgroundColor = '#1e1c3e6d';
+            line.style.color = '#b1b1b1';
+            line.style.boxShadow = '0 0 5px #2f2f4a';
+        });
+
+        document.querySelector('.feels_like svg').style.fill = '#868686';
+        document.querySelector('.wind svg').style.fill = '#868686';
+
+        document.querySelector(".carregando p").style.color = '#f2f2f2';
+    });
 
     light_mode_button.addEventListener("click", () => {
-        light_mode_button.setAttribute('opacity-zero', '')
+        alternateMode(light_mode_button, dark_mode_button);
+        body.removeAttribute('on-dark-mode');
+        body.setAttribute('on-light-mode', '');
 
-        light_mode_button.addEventListener("animationend", () => {
-            light_mode_button.style.display = 'none';
-            light_mode_button.style.opacity = '0';
-            light_mode_button.removeAttribute('opacity-zero')
+        h1Top.style.color = '#0e0d25';
 
-            dark_mode_button.style.display = 'block'
-            dark_mode_button.setAttribute('opacity-one', '')
-            dark_mode_button.style.animationIterationCount = '1';
-            dark_mode_button.addEventListener('animationend', () => {
-                dark_mode_button.style.opacity = '1';
-                dark_mode_button.removeAttribute('opacity-one')
-            })
-        })
-    })
+        lines.forEach(line => {
+            line.style.backgroundColor = '#d2d0d094';
+            line.style.color = '#0e0d25';
+            line.style.boxShadow = '0 0 5px #b1b1b1';
+        });
 
-})
+        document.querySelector('.feels_like svg').style.fill = '#0e0d25';
+        document.querySelector('.wind svg').style.fill = '#0e0d25';
+
+        document.querySelector(".carregando p").style.color = '#0e0d25';
+
+    });
+});
 
 
 

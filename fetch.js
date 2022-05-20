@@ -1,7 +1,10 @@
 navigator.geolocation.getCurrentPosition((pos) => {
     let lat = pos.coords.latitude
     let long = pos.coords.longitude
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=0ed99f0c6edee4e2d077b34341618e9a&lang=pt`)
+    document.querySelector(".carregando").style.display = 'none';
+    document.querySelector(".content_app").style.display = 'block';
+    console.log(lat, long)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=5796adfb5ba187816aed16c0d04a3bfd&lang=pt`)
     .then(response => response.json())
     .then(api => {
         console.log(api);
@@ -9,12 +12,6 @@ navigator.geolocation.getCurrentPosition((pos) => {
         document.querySelector(".temperatura p").innerHTML = `${api.main.temp} ºC`;
         document.querySelector(".feels_like .info").innerHTML = `Sensação Témica: ${api.main.feels_like} ºC`;
         document.querySelector(".humidity .info").innerHTML = `Umidade do ar: ${api.main.humidity}%`;
-
-        let sunrise = new Date(api.sys.sunrise * 1000).toISOString().substr(11, 8);
-        document.querySelector(".sunrise .info").innerHTML = `Nascer do sol: ${sunrise}h`;
-
-        let sunset = new Date(api.sys.sunset * 1000).toISOString().substr(11, 8);
-        document.querySelector(".sunset .info").innerHTML = `Por do sol: ${sunset}h`;
 
         document.querySelector(".wind .info").innerHTML = `Velocidade do vento: ${String(api.wind.speed * 3.6).substr(0, 4)}Km/h`;
 
@@ -33,4 +30,8 @@ icons/dia-chuvoso.png
 
 icons/chuva-sem-sol.png
 <a href="https://www.flaticon.com/br/icones-gratis/chuvoso" title="chuvoso ícones">Chuvoso ícones criados por berkahicon - Flaticon</a>
+
+cnt={cnt}
+https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=5796adfb5ba187816aed16c0d04a3bfd&lang=pt
+
 `

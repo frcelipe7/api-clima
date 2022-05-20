@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+* {padding: 0; margin: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+html {
+    background-color: #e1e1e1;
+}
+
+.dark-mode {
+    position: fixed; top: 50px; right: 70px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.dark-mode .dark, .dark-mode .light {position: absolute; cursor: pointer;}
+.dark-mode .light svg {width: 40px; height: 40px; display: none; opacity: 0;}
+.dark-mode .dark svg {width: 23px; height: 23px;}
+
+.dark-mode .button svg[opacity-zero] {
+    animation: opacity-zero .5s forwards;
+    animation-iteration-count: 1;
+}
+
+.dark-mode .button svg[opacity-one] {
+    animation: opacity-one .5s forwards;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes opacity-zero {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes opacity-one {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.clima {margin: 10px auto; text-align: center; font-size: 30pt;}
+
+.content {
+    background-color: #1295ec; margin: 50px auto;
+    border: 1px solid #4fb9ff; box-shadow: 0 0 15px #064c7ac2;
+    display: flex; align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%; border-radius: 10px;
+    padding: 10px; max-width: 400px;
+}
+
+.temperatura p {
+    border-radius: 15px;
+    font-size: 50pt;
+    font-weight: 500;
+}
+
+.cidade {
+    margin-top: -20px;
+    font-weight: 400;
+}
+
+.line {
+    display: flex; border: 1px solid #064c7ac2;
+    border-radius: 5px; background-color: #d2d0d094;
+    width: 80%; margin: 10px auto;
+    height: 31px; padding: 0; box-shadow: 0 0 5px #b1b1b1;
+    display: flex; align-items: center;
+}
+
+.icon {
+    width: 24px; height: 24px; align-items: center;
+    display: flex; justify-content: center; 
+    margin: 5px;
+}
+
+.humidity .icon {background: url('icons/humidity.png') center center no-repeat;}
+.sunrise .icon  {background: url('icons/sunrise.png') center center no-repeat;}
+.sunset .icon   {background: url('icons/sunset.png') center center no-repeat;}
+.weather .icon  {background: url('icons/sun.png') center center no-repeat;}
+.humidity .icon {background: url('icons/humidity.png') center center no-repeat;}

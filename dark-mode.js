@@ -11,6 +11,8 @@ function alternateMode(button_one, button_two) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".icones_disponiveis_em").style.color = "#4d4d4d";
+
     // butoes
     const dark_mode_button = document.querySelector(".dark-mode .dark");
     const light_mode_button = document.querySelector(".dark-mode .light");
@@ -56,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('.wind svg').style.fill = '#0e0d25';
 
         document.querySelector(".carregando p").style.color = '#0e0d25';
-
     });
 });
 

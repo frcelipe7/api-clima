@@ -3,11 +3,9 @@ navigator.geolocation.getCurrentPosition((pos) => {
     let long = pos.coords.longitude
     document.querySelector(".carregando").style.display = 'none';
     document.querySelector(".content_app").style.display = 'block';
-    console.log(lat, long)
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=5796adfb5ba187816aed16c0d04a3bfd&lang=pt`)
     .then(response => response.json())
     .then(api => {
-        console.log(api);
         document.querySelector(".cidade").innerHTML = `${api.name}`;
         document.querySelector(".temperatura p").innerHTML = `${api.main.temp} ºC`;
         document.querySelector(".feels_like .info").innerHTML = `Sensação Témica: ${api.main.feels_like} ºC`;
@@ -22,6 +20,8 @@ navigator.geolocation.getCurrentPosition((pos) => {
 
 `
 
+// adicionar funcionalidade de img para dias diferentes de 'ensolarado'
+
 icons/ceu-nublado.png
 <a href="https://www.flaticon.com/br/icones-gratis/clima" title="clima ícones">Clima ícones criados por kosonicon - Flaticon</a>
 
@@ -30,8 +30,5 @@ icons/dia-chuvoso.png
 
 icons/chuva-sem-sol.png
 <a href="https://www.flaticon.com/br/icones-gratis/chuvoso" title="chuvoso ícones">Chuvoso ícones criados por berkahicon - Flaticon</a>
-
-cnt={cnt}
-https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=5796adfb5ba187816aed16c0d04a3bfd&lang=pt
 
 `
